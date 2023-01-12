@@ -1,0 +1,44 @@
+{
+    "dates": [
+        {
+            "date": "2023-01-11T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-12T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-13T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-14T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-15T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-16T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-17T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-18T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        },
+        {
+            "date": "2023-01-19T22:30:00",
+            "award_description": "1 TV LED DE 32 POLEGADAS"
+        }
+    ],
+    "promotedBy": "PARÓQUIA NOSSA SENHORA DA CONCEIÇÃO - MONSENHOR PAULO - MG",
+    "address": "SALÃO SÃO SEBASTIÃO - BAIRRO COHAB - MONSENHOR PAULO - MG",
+    "price": 35,
+    "quantity": 10
+}
