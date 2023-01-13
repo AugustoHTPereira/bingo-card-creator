@@ -9,17 +9,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMvc();
 
 builder.Services.AddLocalization();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 var supportedCultures = new[]{
     new CultureInfo("pt-BR")
@@ -32,10 +33,12 @@ app.UseRequestLocalization(new RequestLocalizationOptions {
 
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CreateSpecificCulture("pt-BR");
 
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+// app.MapControllers();
+app.MapControllerRoute("Default", "{Controller=Home}/{Action=Index}/{Id?}");
 
 app.Run();

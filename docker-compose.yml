@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  bingo-api:
+    build: .
+    container_name: bingo-api
+    ports:
+      - 8080:80
+    volumes:
+      - ./volume/cards/:/app/cards/

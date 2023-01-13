@@ -1,5 +1,4 @@
 using iText.Kernel.Colors;
-using iText.Kernel.Events;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Kernel.Utils;
@@ -260,7 +259,7 @@ public class BingoController : ControllerBase
 
         #region Merge files
             string mergedFileName = Guid.NewGuid().ToString() + ".pdf";
-            string mergePath = Path.Combine(Environment.CurrentDirectory, "cards");
+            string mergePath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
             var writer = new PdfWriter(Path.Combine(mergePath, mergedFileName));
             var pdf = new PdfDocument(writer);
             var merger = new PdfMerger(pdf);
@@ -275,14 +274,10 @@ public class BingoController : ControllerBase
             pdf.Close();
         #endregion
 
-        var provider = new PhysicalFileProvider(mergePath);
-        var fileInfo = provider.GetFileInfo(mergedFileName);
-        var readStream = fileInfo.CreateReadStream();
-
         TimeSpan time = (DateTime.Now - start);
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($">> {cards.Count()} generated in {time.TotalMilliseconds}ms.");
         Console.ResetColor();
-        return File(readStream, "application/pdf", mergedFileName);
+        return Ok(mergedFileName);
     }
 }

@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-synthesis: none;
+    -moz-font-feature-settings: 'kern';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    direction: ltr;
+    text-align: left;
+
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text","SF Pro Icons","Inter","Arial",sans-serif;
+    color: #1d1d1f;
+    background-color: #fefefe;
+    font-style: normal;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 2rem;
+    padding-bottom: 8rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+a {
+    color: #06c;
+}
+
+h1, h2, h3, h4 {
+    font-weight: bolder;
+}
+
+.page-header {
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3.320rem;
+}
+
+.page-legend {
+    color: #444;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+input {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: .435rem;
+    min-height: 2.3rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    outline: 4px solid transparent;
+    transition-duration: 120ms;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text","SF Pro Icons","Inter","Arial",sans-serif;
+    color: #1d1d1f;
+    width: 100%;
+}
+
+input:not([type=submit]):focus, 
+input:not([type=submit]):active, 
+input:not([type=submit]):target {
+    outline-color: rgb(147, 189, 231);
+    border-color: #c0c0c0;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    font-size: .96rem;
+    margin-bottom: .3rem;
+}
+
+.form-field + .form-field {
+    margin-top: 1rem;
+}
+
+.form-field-legend {
+    color: #4f4f4f;
+    font-size: .85rem;
+    margin-top: .2rem;
+    display: block;
+}
+
+input[type=submit], button {
+    display: block;
+    border: 1px solid;
+    border-radius: .435rem;
+    min-height: 2.3rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    outline: 4px solid transparent;
+    transition-duration: 120ms;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text","SF Pro Icons","Inter","Arial",sans-serif;
+    color: #1d1d1f;
+    width: 100%;
+    background-color: #06c;
+    border-color: #06c;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group input:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.input-group input:first-child {
+    border-radius: .435rem 0 0 .435rem;
+}
+
+.input-group input:last-child {
+    border-radius: 0 .435rem .435rem 0;
+}
+
+.input-group input + input {
+    border-left: 0;
+}
+
+button.light {
+    background-color: rgba(0, 102, 204, 0.096);
+    border: 0;
+    color: #06c;
+}
+
+button.light-danger {
+    background-color: rgba(204, 0, 0, 0.096);
+    border: 0;
+    color: rgb(204, 0, 0);
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1rem 0;
+}
+
+input[disabled] {
+    cursor: no-drop;
+    background-color: rgb(77, 120, 163);
+}

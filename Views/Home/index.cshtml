@@ -1,0 +1,142 @@
+<div class="page">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Bingo!
+            </h1>
+
+            <p class="page-legend" style="max-width: 300px; margin: 0 auto; margin-top: 1rem;">
+                Crie cartelas de bingo sob demanda.
+            </p>
+        </div>
+
+        <form method="post" style="margin: 0 auto; max-width: 320px; width: 100%; margin-top: 3rem">
+            <div class="form-field">
+                <label>Promovido por:</label>
+                <input name="PromotedBy" id="PromotedBy" required />
+            </div>
+
+            <div class="form-field">
+                <label>Local:</label>
+                <input name="Place" id="Place" required />
+            </div>
+
+            <div class="form-field">
+                <label>Quantidade:</label>
+                <input name="Quantity" id="Quantity" type="number" required />
+                <span class="form-field-legend">Informe a quantidade de cartelas a ser gerada.</span>
+            </div>
+
+            <div class="form-field">
+                <label>Valor:</label>
+                <input name="Price" id="Price" type="number" required />
+            </div>
+
+            <div class="form-field">
+                <label>Premiações:</label>
+
+                <div id="award-container">
+                    <div id="award-0">
+                        <div style="margin-bottom: .3rem" data-key="0">
+                            <label>Data do prêmio 0:</label>
+                            <div class="input-group">
+                                <input type="date" name="AwardDate[0].Date" />
+                                <input type="time" name="AwardDate[0].Hour" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Prêmio 0:</label>
+                            <input name="AwardDate[0].Name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1rem">
+                    <button type="button" onclick="addAward()" class="light">Adicionar outra premiação</button>
+                </div>
+            </div>
+
+            <hr />   
+
+            <div class="form-field">
+                <input type="submit" value="Criar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const awardContainer = document.querySelector("#award-container");
+    const form = document.querySelector("form");
+
+    const addAward = () => {
+        const index = awardContainer.children.length;
+        const newAward = `<div id="award-${index}" style="margin-top: .8rem">
+                                <div style="margin-bottom: .3rem" data-key="${index}">
+                                    <label>Data do prêmio ${index}:</label>
+                                    <div class="input-group">
+                                        <input name="AwardDate[${index}].Date" type="date" />
+                                        <input name="AwardDate[${index}].Hour" type="time" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label>Prêmio ${index}:</label>
+                                    <input name="AwardDate[${index}].Name" />
+                                </div>
+
+                                <div style="margin-top: .2rem">
+                                    <button type="button" class="light light-danger">Excluir premiação ${index}</button>
+                                </div>
+                            </div>`
+
+        awardContainer.innerHTML += newAward;
+    }
+
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+        console.log("Submit");
+        document.querySelector("form input[type=submit]").disabled=true;
+        
+        const data = {
+            PromotedBy: document.querySelector("#PromotedBy").value,
+            Address: document.querySelector("#Place").value,
+            Price: parseFloat(document.querySelector("#Price").value),
+            Quantity: parseFloat(document.querySelector("#Quantity").value),
+            Dates: [],
+        }
+
+        for (let i = 0; i < awardContainer.children.length; i++)
+        {
+            const awardDate = document.querySelector(`input[name='AwardDate[${i}].Date']`).value;
+            const awardHour = document.querySelector(`input[name='AwardDate[${i}].Hour']`).value;
+            const awardName = document.querySelector(`input[name='AwardDate[${i}].Name']`).value;
+
+            data.Dates.push({
+                date: awardDate + "T" + awardHour,
+                award_description: awardName,
+            });
+        }
+
+        console.log(data)
+        
+        fetch("/Bingo/Card", {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(x => {
+            return x.json();
+        }).then((data) => { 
+            window.location.href = "/" + data
+            console.log()
+         })
+
+        document.querySelector("form input[type=submit]").disabled=false;
+    }
+
+    form.addEventListener("submit", onFormSubmit)
+</script>
