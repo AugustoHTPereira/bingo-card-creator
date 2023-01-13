@@ -37,8 +37,8 @@
 
                 <div id="award-container">
                     <div id="award-0">
-                        <div style="margin-bottom: .3rem" data-key="0">
-                            <label>Data do prêmio 0:</label>
+                        <div style="margin-bottom: .3rem">
+                            <label>Data do prêmio:</label>
                             <div class="input-group">
                                 <input type="date" name="AwardDate[0].Date" />
                                 <input type="time" name="AwardDate[0].Hour" />
@@ -46,21 +46,21 @@
                         </div>
 
                         <div>
-                            <label>Prêmio 0:</label>
+                            <label>Prêmio:</label>
                             <input name="AwardDate[0].Name" />
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top: 1rem">
-                    <button type="button" onclick="addAward()" class="light">Adicionar outra premiação</button>
+                    <div class="btn light" onclick="addAward()">Adicionar outra premiação</div>
                 </div>
             </div>
 
             <hr />   
 
             <div class="form-field">
-                <input type="submit" value="Criar" />
+                <button type="submit">Criar</button>
             </div>
         </form>
     </div>
@@ -70,28 +70,32 @@
     const awardContainer = document.querySelector("#award-container");
     const form = document.querySelector("form");
 
+    const removeAward = (awardId) => {
+        document.querySelector('#' + awardId).remove();
+    }
+
     const addAward = () => {
-        const index = awardContainer.children.length;
-        const newAward = `<div id="award-${index}" style="margin-top: .8rem">
-                                <div style="margin-bottom: .3rem" data-key="${index}">
-                                    <label>Data do prêmio ${index}:</label>
+        var id = Math.floor(Math.random() * 100) + "t";
+        var newAward = `<div id="award-${id}" data-id="${id}" style="margin-top: .8rem">
+                                <div style="margin-bottom: .3rem" data-key="${id}">
+                                    <label>Data do prêmio:</label>
                                     <div class="input-group">
-                                        <input name="AwardDate[${index}].Date" type="date" />
-                                        <input name="AwardDate[${index}].Hour" type="time" />
+                                        <input name="AwardDate[${id}].Date" type="date" />
+                                        <input name="AwardDate[${id}].Hour" type="time" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label>Prêmio ${index}:</label>
-                                    <input name="AwardDate[${index}].Name" />
+                                    <label>Prêmio:</label>
+                                    <input name="AwardDate[${id}].Name" />
                                 </div>
 
                                 <div style="margin-top: .2rem">
-                                    <button type="button" class="light light-danger">Excluir premiação ${index}</button>
+                                    <button type="button" onclick="removeAward('award-${id}')" class="light light-danger">Excluir premiação</button>
                                 </div>
                             </div>`
 
-        awardContainer.innerHTML += newAward;
+        document.querySelector(`#${awardContainer.children[awardContainer.children.length - 1].id}`).insertAdjacentHTML("afterend",newAward);
     }
 
     const onFormSubmit = (e) => {
@@ -109,9 +113,10 @@
 
         for (let i = 0; i < awardContainer.children.length; i++)
         {
-            const awardDate = document.querySelector(`input[name='AwardDate[${i}].Date']`).value;
-            const awardHour = document.querySelector(`input[name='AwardDate[${i}].Hour']`).value;
-            const awardName = document.querySelector(`input[name='AwardDate[${i}].Name']`).value;
+            const id = awardContainer.children[i].dataset.id;
+            const awardDate = document.querySelector(`input[name='AwardDate[${id}].Date']`).value;
+            const awardHour = document.querySelector(`input[name='AwardDate[${id}].Hour']`).value;
+            const awardName = document.querySelector(`input[name='AwardDate[${id}].Name']`).value;
 
             data.Dates.push({
                 date: awardDate + "T" + awardHour,
